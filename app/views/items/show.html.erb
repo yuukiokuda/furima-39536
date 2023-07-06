@@ -25,6 +25,8 @@
       </span>
     </div>
     <%# ログインしている、かつ、購入済みの場合、条件分岐 %>
+    <% if user_signed_in? && @item.order.present? %>
+    <% else %>
       <%# ログインユーザーと出品者が同一の場合、条件分岐 %>
       <% if current_user.id == @item.user_id %>
         <%= link_to '商品の編集', edit_item_path(@item), method: :get, class: "item-red-btn" %>
@@ -35,6 +37,7 @@
         <%= link_to '購入画面に進む',item_orders_path(@item.id) , class:"item-red-btn"%>
       <%end%>
       <%# //ログインユーザーと出品者が同一の場合、条件分岐 %>
+    <% end %>
     <%# //ログインしている、かつ、購入済みの場合、条件分岐 %>
     <div class="item-explain-box">
       <span><%= @item.description %></span>
