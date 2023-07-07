@@ -4,7 +4,7 @@ class OrdersController < ApplicationController
   before_action :set_public_key, only: [:index, :create]
 
   def index
-    return redirect_to root_path if current_user.id = @item.user.id
+    return redirect_to root_path if current_user.id == @item.user.id
     @order_address = OrderAddress.new
     # @orders = Order.all
   end
