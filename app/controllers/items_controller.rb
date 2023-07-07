@@ -21,6 +21,7 @@ class ItemsController < ApplicationController
   end
 
   def show
+    return redirect_to root_path if @item.order.present?
   end
 
   def edit

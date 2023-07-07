@@ -1,7 +1,9 @@
 class OrdersController < ApplicationController
   before_action :select_item, only: [:index, :create]
+  before_action :authenticate_user!, only: [:index]
 
   def index
+    return redirect_to root_path if current_user.id = @item.user.id
     @order_address = OrderAddress.new
     # @orders = Order.all
   end
@@ -25,4 +27,5 @@ class OrdersController < ApplicationController
   def select_item
     @item = Item.find(params[:item_id])
   end
+  
 end
