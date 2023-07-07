@@ -2,6 +2,10 @@ class OrderAddress
   include ActiveModel::Model
   attr_accessor :postal_code, :prefecture, :city, :addresses, :building, :phone_number, :user_id, :item_id #order_idを抜いた
 
+  # トークン関係
+  attr_accessor :token
+  validates :token, presence: true
+
   with_options presence: true do
     # orderのバリデーション
     # user_idのバリデーション
