@@ -20,7 +20,7 @@ RSpec.describe OrderAddress, type: :model do
     end
 
     context '内容に問題がある場合' do
-      it "tokenが空では登録できないこと" do
+      it 'tokenが空では登録できないこと' do
         @order_address.token = nil
         @order_address.valid?
         expect(@order_address.errors.full_messages).to include("Token can't be blank")
@@ -33,7 +33,7 @@ RSpec.describe OrderAddress, type: :model do
       it 'postal_codeが半角のハイフンを含んだ正しい形式でないと保存できないこと' do
         @order_address.postal_code = '1234567'
         @order_address.valid?
-        expect(@order_address.errors.full_messages).to include("Postal code is invalid. Include hyphen(-)")
+        expect(@order_address.errors.full_messages).to include('Postal code is invalid. Include hyphen(-)')
       end
       it 'prefectureを選択していないと保存できないこと' do
         @order_address.prefecture = 0
@@ -58,7 +58,7 @@ RSpec.describe OrderAddress, type: :model do
       it 'phone_numberが半角のハイフンを含まない正しい形式でないと保存できないこと' do
         @order_address.phone_number = '00000-00000'
         @order_address.valid?
-        expect(@order_address.errors.full_messages).to include("Phone number Invalid. Please enter only digits in half-width characters.")
+        expect(@order_address.errors.full_messages).to include('Phone number Invalid. Please enter only digits in half-width characters.')
       end
 
       it 'userが紐付いていないと保存できないこと' do
@@ -74,5 +74,3 @@ RSpec.describe OrderAddress, type: :model do
     end
   end
 end
-
-
