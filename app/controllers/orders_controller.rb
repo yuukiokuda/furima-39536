@@ -5,6 +5,7 @@ class OrdersController < ApplicationController
 
   def index
     return redirect_to root_path if current_user.id == @item.user.id
+    return redirect_to root_path if @item.order.present?
 
     @order_address = OrderAddress.new
   end
