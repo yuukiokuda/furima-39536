@@ -7,8 +7,6 @@ RSpec.describe OrderAddress, type: :model do
       user = FactoryBot.create(:user)
       current_user = FactoryBot.create(:user)
       @order_address = FactoryBot.build(:order_address, user_id: current_user.id, item_id: item.id)
-      # @order_address = FactoryBot.build(:order_address, user_id: user.id, item_id: item.id)
-      # binding.pry
     end
 
     context '内容に問題ない場合' do

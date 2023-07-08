@@ -30,17 +30,16 @@ class OrdersController < ApplicationController
   end
 
   def pay_item
-    Payjp.api_key = ENV["PAYJP_SECRET_KEY"]  # 自身のPAY.JPテスト秘密鍵を記述しましょう
+    Payjp.api_key = ENV["PAYJP_SECRET_KEY"]
     Payjp::Charge.create(
-      # binding.pry
-      amount: @item.price,  # 商品の値段
-      card: order_params[:token],    # カードトークン
-      currency: 'jpy'                 # 通貨の種類（日本円）
+      amount: @item.price,
+      card: order_params[:token], 
+      currency: 'jpy'
     )
   end
 
   def set_public_key
-    gon.public_key = ENV["PAYJP_PUBLIC_KEY"] #JavaScriptに渡すため変数設定
+    gon.public_key = ENV["PAYJP_PUBLIC_KEY"] 
 end
   
 end
