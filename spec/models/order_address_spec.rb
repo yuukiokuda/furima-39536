@@ -61,6 +61,22 @@ RSpec.describe OrderAddress, type: :model do
         expect(@order_address.errors.full_messages).to include('Phone number Invalid. Please enter only digits in half-width characters.')
       end
 
+      it 'phone_numberが全角を含まない正しい形式でないと保存できないこと' do
+        @order_address.phone_number = '０0000-00000'
+        @order_address.valid?
+        expect(@order_address.errors.full_messages).to include('Phone number Invalid. Please enter only digits in half-width characters.')
+      end
+      it 'phone_numberが9桁以下では保存できないこと' do
+        @order_address.phone_number = '00000'
+        @order_address.valid?
+        expect(@order_address.errors.full_messages).to include('Phone number Invalid. Please enter only digits in half-width characters.')
+      end
+      it 'phone_numberが12桁以上では保存できないこと' do
+        @order_address.phone_number = '000000-00000000'
+        @order_address.valid?
+        expect(@order_address.errors.full_messages).to include('Phone number Invalid. Please enter only digits in half-width characters.')
+      end
+
       it 'userが紐付いていないと保存できないこと' do
         @order_address.user_id = nil
         @order_address.valid?
